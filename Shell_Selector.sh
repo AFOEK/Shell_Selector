@@ -4,7 +4,7 @@ read selection
 
 if [[ "$selection" == [Yy] ]]; then
     echo "Shell in this machine :"
-    cat /etc/shells | grep -i '/usr/bin/' /etc/shells
+    cat /etc/shells | grep -i '/usr/bin/' /etc/shells 
     unset selection
 else
     echo -e "\e[91mOk\e[39m"
