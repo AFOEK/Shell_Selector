@@ -65,7 +65,7 @@ if [[ "$selection" == [Yy] ]]; then
     elif [[ "$os" == "openSUSE" || "$os" == "openSUSE project" ]]; then
         sudo zypper install bash zsh ksh csh tcsh ash dash fish
     elif [[ "$os" == "Darwin" ]]; then
-        sudo install brew bash zsh fish dash ksh
+        sudo install brew bash zsh fish dash ksh 
     fi 
 fi
 
