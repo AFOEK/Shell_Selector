@@ -13,6 +13,8 @@ fi
 
 echo "did you want to download all avaliable shell ? (Y/N): "
 read selection
+
+if [[ ]]
 if [[ "$selection" == [Yy] ]]; then
     echo -e "\e[5mLoading..."
     sudo apt-add-repository -y ppa:fish-shell/release-3
