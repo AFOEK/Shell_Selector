@@ -13,11 +13,17 @@ fi
 
 echo "did you want to download all avaliable shell ? (Y/N): "
 read selection
+
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+    os = $NAME
+    ver = $VERSION_ID
+elif type lsb_release > /dev/null 2>&1; then
 if [[ "$selection" == [Yy] ]]; then
     echo -e "\e[5mLoading..."
     sudo apt-add-repository -y ppa:fish-shell/release-3
     sudo apt update && sudo apt upgrade  
-    sudo apt-get -y bash zsh ksh csh tcsh ash dash fish
+    sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish
 fi
 
 echo "Please enter shell you want to use: "
