@@ -13,27 +13,27 @@ fi
 
 if [ -f /etc/os-release ]; then
     . /etc/os-release
-    os = $NAME
-    ver = $VERSION_ID
+    OS=$NAME
+    VER=$VERSION_ID
 elif type lsb_release > /dev/null 2>&1; then
-    os = $(lsb_release -si)
-    ver = $(lsb_release -sr)
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
 elif [ -f /etc/lsb-release ]; then
     . /etc/lsb-release
-    os = $DISTRIB_ID
-    ver = $DISTRIB_RELEASE
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
 elif [ -f /etc/debian_version ]; then
-    os = Debian
-    ver = $(cat /etc/debian_version)
+    OS=Debian
+    VER=$(cat /etc/debian_version)
 elif [ -f /etc/SuSe_version ]; then
-    os = SuSe
-    ver = $(cat /etc/SuSe_version)
+    OS=SuSe
+    VER=$(cat /etc/SuSe_version)
 elif [ -f /etc/redhat_version ]; then
-    os = RedHat
-    ver = $(cat /etc/redhat_version)
+    OS=RedHat
+    VER=$(cat /etc/redhat_version)
 else
-    os = $(uname -s)
-    ver = $(uname -r)
+    OS=$(uname -s)
+    VER=$(uname -r)
 fi
 
 echo "did you want to download all avaliable shell ? (Y/N): "
@@ -42,7 +42,7 @@ echo "Much appreciated if pointing where the bug or package is missing, Power Sh
 read selection
 
 if [[ "$selection" == [Yy] ]]; then
-    if [[ "$os" == "Ubuntu" ]]; then
+    if [[ "$OS" == "Ubuntu" ]]; then
         sudo apt-add-repository -y ppa:fish-shell/release-3
         wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         sudo dpkg -i packages-microsoft-prod.deb
@@ -51,27 +51,27 @@ if [[ "$selection" == [Yy] ]]; then
         sudo dpkg -i libicu66_66.1-2ubuntu2_amd64.deb
         sudo add-apt-repository universe
         sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh
-    elif [[ "$os" == "Red Hat Enterprise Linux Sever" || "$os" == "RedHat" ]]; then
+    elif [[ "$OS" == "Red Hat Enterprise Linux Sever" || "$OS" == "RedHat" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/RHEL_7/shells:fish.repo
         sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "Debian GNU/Linux" || "$os" == "Debian" ]]; then
+    elif [[ "$OS" == "Debian GNU/Linux" || "$OS" == "Debian" ]]; then
         sudo echo 'deb http://download.opensuse.org/repositories/shells:/fish/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish.list
         sudo curl -fsSL https://download.opensuse.org/repositories/shells:fish/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish.gpg > /dev/null
         sudo apt update
         sudo apt install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "Arch Linux" || "$os" == "Arch" ]]; then
+    elif [[ "$OS" == "Arch Linux" || "$OS" == "Arch" ]]; then
         sudo pacman -S bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "CentOS Linux" ]]; then
+    elif [[ "$OS" == "CentOS Linux" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/CentOS_8/shells:fish.repo
         sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "Fedora" ]]; then
+    elif [[ "$OS" == "Fedora" ]]; then
         sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/shells:fish/Fedora_31/shells:fish.repo
         sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "openSUSE" || "$os" == "openSUSE project" ]]; then
+    elif [[ "$OS" == "openSUSE" || "$OS" == "openSUSE project" ]]; then
         sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash
-    elif [[ "$os" == "Darwin" ]]; then
+    elif [[ "$OS" == "Darwin" ]]; then
         sudo brew install bash zsh fish dash ksh yash rc sash
         sudo brew install --cask powershell
     fi 
