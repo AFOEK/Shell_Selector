@@ -37,13 +37,20 @@ else
 fi
 
 echo "did you want to download all avaliable shell ? (Y/N): "
+echo -e "\e[31m\e[1mSome package are not avaiable in your machine, some are not supported by your machine and this script are tested only in Ubuntu 20.04 partialy in macOS Catalina\e[0m"
+echo "Much appreciated if pointing where the bug or package is missing, Power Shell are set for Ubuntu only" | lolcat
 read selection
 
 if [[ "$selection" == [Yy] ]]; then
     if [[ "$os" == "Ubuntu" ]]; then
         sudo apt-add-repository -y ppa:fish-shell/release-3
-        sudo apt update && sudo apt upgrade  
-        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
+        wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+        sudo dpkg -i packages-microsoft-prod.deb
+        wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu66_66.1-2ubuntu2_amd64.deb
+        sudo apt update
+        sudo dpkg -i libicu66_66.1-2ubuntu2_amd64.deb
+        sudo add-apt-repository universe
+        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh
     elif [[ "$os" == "Red Hat Enterprise Linux Sever" || "$os" == "RedHat" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/RHEL_7/shells:fish.repo
@@ -65,11 +72,12 @@ if [[ "$selection" == [Yy] ]]; then
     elif [[ "$os" == "openSUSE" || "$os" == "openSUSE project" ]]; then
         sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash
     elif [[ "$os" == "Darwin" ]]; then
-        sudo install brew bash zsh fish dash ksh yash rc sash
+        sudo brew install bash zsh fish dash ksh yash rc sash
+        sudo brew install --cask powershell
     fi 
 fi
 
-echo "Please enter shell you want to use: "
+echo "Please enter shell you want to use:"
 read shell
 
 case $shell in
@@ -118,8 +126,12 @@ case $shell in
         rc
         ;;
     sash | SASH | Sash | "Stand Alone Shell")
-        echo "Switch to Sash (Stand Alone Shell"
+        echo "Switch to Sash (Stand Alone Shell)"
         sash
+        ;;
+    pwsh | PWSH | Pwsh | "Power Shell" | p)
+        echo "Switch to Pwsh (Power Shell)"
+        pwsh
         ;;
     rbash | RBASH | "Restricted Bourne Again Shell" | rb)
         echo "Switched to Restricted Bash Shell"
