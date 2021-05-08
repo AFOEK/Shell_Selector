@@ -50,29 +50,29 @@ if [[ "$selection" == [Yy] ]]; then
         sudo apt update
         sudo dpkg -i libicu66_66.1-2ubuntu2_amd64.deb
         sudo add-apt-repository universe
-        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh
+        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh screen
     elif [[ "$OS" == "Red Hat Enterprise Linux Sever" || "$OS" == "RedHat" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/RHEL_7/shells:fish.repo
-        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "Debian GNU/Linux" || "$OS" == "Debian" ]]; then
         sudo echo 'deb http://download.opensuse.org/repositories/shells:/fish/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish.list
         sudo curl -fsSL https://download.opensuse.org/repositories/shells:fish/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish.gpg > /dev/null
         sudo apt update
-        sudo apt install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo apt install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "Arch Linux" || "$OS" == "Arch" ]]; then
-        sudo pacman -S bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo pacman -S bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "CentOS Linux" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/CentOS_8/shells:fish.repo
-        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "Fedora" ]]; then
         sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/shells:fish/Fedora_31/shells:fish.repo
-        sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "openSUSE" || "$OS" == "openSUSE project" ]]; then
-        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash
+        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash 
     elif [[ "$OS" == "Darwin" ]]; then
-        sudo brew install bash zsh fish dash ksh yash rc sash
+        sudo brew install bash zsh fish dash ksh yash rc sash screen
         sudo brew install --cask powershell
     fi 
 fi
@@ -141,4 +141,7 @@ case $shell in
         echo "Switched to Restricted Korn Shell"
         rksh
         ;;
+    scr | Screen | SCR | "screen")
+        echo "Switched to Screen"
+        screen
 esac
