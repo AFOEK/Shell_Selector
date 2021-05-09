@@ -10,7 +10,8 @@ else
     echo -e "\e[91mOk\e[39m"
     unset selection
 fi
-
+platform='unknow'
+unamestr=$(uname)
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     OS=$NAME
@@ -74,6 +75,9 @@ if [[ "$selection" == [Yy] ]]; then
     elif [[ "$OS" == "Darwin" ]]; then
         sudo brew install bash zsh fish dash ksh yash rc sash screen
         sudo brew install --cask powershell
+    elif [[ "$OS" == "FreeBSD" ]]; then
+        sudo pkg install bash zsh ksh csh tcsh ash dash fish yash sash
+        echo "powershell is not available in freebsd"
     fi 
 fi
 
