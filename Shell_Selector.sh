@@ -71,12 +71,12 @@ if [[ "$selection" == [Yy] ]]; then
         sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/shells:fish/Fedora_31/shells:fish.repo
         sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "openSUSE" || "$OS" == "openSUSE project" ]]; then
-        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash 
+        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "Darwin" ]]; then
         sudo brew install bash zsh fish dash ksh yash rc sash screen
         sudo brew install --cask powershell
     elif [[ "$OS" == "FreeBSD" ]]; then
-        sudo pkg install bash zsh ksh csh tcsh ash dash fish yash sash
+        sudo pkg install bash zsh ksh csh tcsh ash dash fish yash sash screen
         echo "powershell is not available in freebsd"
     fi 
 fi

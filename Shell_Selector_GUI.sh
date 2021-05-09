@@ -7,6 +7,7 @@ while true; do
         "Exit" "exit from this programme" \
         "Check Shell" "check all installed shell in this system" \
         "Install Shell" "pick a shell you want to download" \
+        "Change Shell" "pick shell you want to change" \
         "System Info" "check system information" 3>&1 1>&2 2>&3) #Point fd(file descriptor) to stdout, redirect stdout to stderr, and redirect stderr to fd(file decriptor)
         if [[ $choice == "Exit" ]]; then
             echo "Goodbye :)"
@@ -35,6 +36,21 @@ while true; do
             else
                 whiptail --title "System Information" --textbox /dev/stdin 10 34 <<<"$(uname -sr)"
             fi
+        elif [[ $choice == "Install Shell" ]]; then
+            check=$(whiptail --title "Install Shell" --checklist "Choose shell you want to download" $LINES $COLUMNS $(( $LINES - 8 )) \
+            "bash" "Classic Bourne Again Shell (bash) shell" OFF \
+            "zsh" "Z Shell recommended install with oh-my-zsh" OFF \
+            "ksh" "Classic Kron Shell" OFF \
+            "csh" "C Shell" OFF \
+            "tcsh" "Better version of C Shell" OFF \
+            "ash" "Almquist Shell clone of sh" OFF \
+            "dash" "Debian Almquist Shell, better version of ash" OFF \
+            "fish" "Friendly interactive shell" OFF \
+            "yash" "Yet another shell is a POSIX-compliant command line shell written in C99" OFF \
+            "rc" "Run commands, command line interpreter for Version 10 Unix and Plan 9 from Bell Labs operating systems" OFF \
+            "sash" "Stand-alone Shell, is a Unix shell designed for use in recovering from certain types of system failures and errors" OFF \
+            "screen" "A terminal multiplexer, a software application that can be used to multiplex several virtual consoles, allowing a user to access multiple separate login sessions inside a single terminal window, or detach and reattach sessions from a terminal." OFF \
+            "pwsh" "Shell from windows built using .NET Core" OFF)
         fi
     else
         break
