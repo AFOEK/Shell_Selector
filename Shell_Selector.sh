@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 echo -n "You want to check installed shell ? (Y/N): "
 read selection
 
