@@ -50,7 +50,8 @@ while true; do
             "rc" "Run commands, command line interpreter for Version 10 Unix and Plan 9 from Bell Labs operating systems" OFF \
             "sash" "Stand-alone Shell, is a Unix shell designed for use in recovering from certain types of system failures and errors" OFF \
             "screen" "A terminal multiplexer, a software application that can be used to multiplex several virtual consoles, allowing a user to access multiple separate login sessions inside a single terminal window, or detach and reattach sessions from a terminal." OFF \
-            "pwsh" "Shell from windows built using .NET Core" OFF)
+            "pwsh" "Shell from windows built using .NET Core" OFF \
+	    "tmux" "a terminal multiplexer" OFF)
         fi
     else
         break
