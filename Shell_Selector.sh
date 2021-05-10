@@ -51,32 +51,32 @@ if [[ "$selection" == [Yy] ]]; then
         sudo apt update
         sudo dpkg -i libicu66_66.1-2ubuntu2_amd64.deb
         sudo add-apt-repository universe
-        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh screen
+        sudo apt-get install -y bash zsh ksh csh tcsh ash dash fish yash rc sash pwsh screen tmux
     elif [[ "$OS" == "Red Hat Enterprise Linux Sever" || "$OS" == "RedHat" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/RHEL_7/shells:fish.repo
-        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
+        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen tmux
     elif [[ "$OS" == "Debian GNU/Linux" || "$OS" == "Debian" ]]; then
         sudo echo 'deb http://download.opensuse.org/repositories/shells:/fish/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish.list
         sudo curl -fsSL https://download.opensuse.org/repositories/shells:fish/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish.gpg > /dev/null
         sudo apt update
-        sudo apt install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
+        sudo apt install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen tmux
     elif [[ "$OS" == "Arch Linux" || "$OS" == "Arch" ]]; then
         sudo pacman -S bash zsh ksh csh tcsh ash dash fish yash rc sash screen
     elif [[ "$OS" == "CentOS Linux" ]]; then
         cd /etc/yum.repos.d/
         sudo wget https://download.opensuse.org/repositories/shells:fish/CentOS_8/shells:fish.repo
-        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen
+        sudo yum install -y bash zsh ksh csh tcsh ash dash fish yash rc sash screen tmux
     elif [[ "$OS" == "Fedora" ]]; then
         sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/shells:fish/Fedora_31/shells:fish.repo
-        sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash screen
+        sudo dnf install bash zsh ksh csh tcsh ash dash fish yash rc sash screen tmux
     elif [[ "$OS" == "openSUSE" || "$OS" == "openSUSE project" ]]; then
-        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash screen
+        sudo zypper install bash zsh ksh csh tcsh ash dash fish yash rc sash screen tmux
     elif [[ "$OS" == "Darwin" ]]; then
-        sudo brew install bash zsh fish dash ksh yash rc sash screen
+        sudo brew install bash zsh fish dash ksh yash rc sash screen tmux
         sudo brew install --cask powershell
     elif [[ "$OS" == "FreeBSD" ]]; then
-        sudo pkg install bash zsh ksh csh tcsh ash dash fish yash sash screen
+        sudo pkg install bash zsh ksh csh tcsh ash dash fish yash sash screen tmux
         echo "powershell is not available in freebsd"
     fi 
 fi
@@ -148,4 +148,8 @@ case $shell in
     scr | Screen | SCR | "screen")
         echo "Switched to Screen"
         screen
+	;;
+    tmux | Tmux | "Terminal multiplexer")
+	echo "Switched to tmux"
+	tmux
 esac
