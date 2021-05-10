@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 eval `resize`
 whiptail --title "Welcome" --msgbox "This are bash script for download and change your shell terminal.\nIf you encounter a bugs or mistake please inform me in github :)" 10 45
 while true; do
