@@ -1,8 +1,8 @@
 #!/bin/bash
 eval `resize`
 whiptail --title "Welcome" --msgbox "This are bash script for download and change your shell terminal.\nIf you encounter a bugs or mistake please inform me in github :)" 10 45
-function check_list() {
-    check=$(whiptail --title "Install Shell" --checklist "Choose shell you want to download" $LINES $COLUMNS $(( $LINES - 8 )) \
+function radio_list() {
+    check=$(whiptail --title "Install Shell" --radiolist "Choose shell you want to download" $LINES $COLUMNS $(( $LINES - 8 )) \
         "bash" "Classic Bourne Again Shell (bash) shell" OFF \
         "zsh" "Z Shell recommended install with oh-my-zsh" OFF \
         "ksh" "Classic Kron Shell" OFF \
@@ -16,7 +16,8 @@ function check_list() {
         "sash" "Stand-alone Shell, is a Unix shell designed for use in recovering from certain types of system failures and errors" OFF \
         "screen" "A terminal multiplexer, a software application that can be used to multiplex several virtual consoles, allowing a user to access multiple separate login sessions inside a single terminal window, or detach and reattach sessions from a terminal." OFF \
         "pwsh" "Shell from windows built using .NET Core" OFF \
-        "tmux" "a terminal multiplexer" OFF 3>&1 1>&2 2>&3)
+        "tmux" "a terminal multiplexer" OFF \
+        "all" "f*ck it install listed shell" OFF 3>&1 1>&2 2>&3)
 }
 function menus() {
     choice=$(whiptail --title "Menus" --menu "What you want to do ? (REMINDER THIS ARE RUNNING AN PRE-CODED SCRIPT, YOU MUST KNOW WHAT YOU DOING)." $LINES $COLUMNS $(( $LINES - 8 )) \
@@ -57,7 +58,7 @@ function menus() {
                 fi
             ;;
             "Install Shell")
-                check_list
+                radio_list  #a bit dumb move to call a function in a function
             ;;
             "Change Shell")
                 echo "Comming soon"
