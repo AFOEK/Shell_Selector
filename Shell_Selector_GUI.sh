@@ -18,11 +18,7 @@ function radio_list() {
         "pwsh" "Shell from windows built using .NET Core" OFF \
         "tmux" "a terminal multiplexer" OFF \
         "all" "f*ck it install listed shell" OFF 3>&1 1>&2 2>&3)
-    case $check in
-        bash | "bash")
-        ;;
-        
-    esac
+    
 }
 function menus() {
     choice=$(whiptail --title "Menus" --menu "What you want to do ? (REMINDER THIS ARE RUNNING AN PRE-CODED SCRIPT, YOU MUST KNOW WHAT YOU DOING)." $LINES $COLUMNS $(( $LINES - 8 )) \
@@ -33,6 +29,7 @@ function menus() {
         "System Info" "check system information" 3>&1 1>&2 2>&3) #Point fd(file descriptor) to stdout, redirect stdout to stderr, and redirect stderr to fd(file decriptor)
         case $choice in
             Exit | "Exit")
+                local func_="Exit"
                 echo "Goodbye :)"
                 sleep 1
                 clear
@@ -73,4 +70,8 @@ function menus() {
 
 while true; do
     menus
+    func_=$(menus)
+    if [ func_ == "Exit" ]; then
+        exit 0
+    fi
 done
